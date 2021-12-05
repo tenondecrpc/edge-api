@@ -14,11 +14,16 @@ class AuthUserController {
     if (!validator.isLength(password, {min: 8})) return response.status(400).send({ message: "INVALID_PASSWORD" });
     const service = new AuthUserService();
     try {
-      const {user, accessToken} = await service.execute(email, password);
+      const {user, accessToken, refreshToken} = await service.execute(email);
       if (!user) {
-        response.status(404).send({message: 'USER_NOT_FOUND'});
+        response.status(404).send({ message: 'USER_NOT_FOUND' });
+        return;
       }
-      response.status(200).send({name: user.name, accessToken: accessToken});
+      if (user.password !== password) {
+        response.status(400).send({ message: 'INVALID_PASSWORD' });
+        return;
+      }
+      response.status(200).send({name: user.name, accessToken, refreshToken});
     } catch (error) {
       response.status(400).send({message: error.message});
     }
