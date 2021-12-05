@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import { AuthUserController } from './controllers/AuthUserController';
 
 const router = Router();
 
-router.get('/helloworld', (request, response) => { console.log('Hello World'); response.sendStatus(200) });
+router.post('/auth', new AuthUserController().handle);
 
 export { router };
