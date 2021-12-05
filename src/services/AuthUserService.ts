@@ -1,5 +1,6 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
+import prismaClient from "../prisma";
 class AuthUserService {
   async execute(email: string, password: string) {
     /** Create access token
@@ -13,9 +14,14 @@ class AuthUserService {
       email: email
     }, process.env.JWT_SECRET, {
       expiresIn: "1h"
-  });
-    console.log('accessToken', accessToken);
-    return accessToken;
+    });
+    const user = await prismaClient.user.findFirst({
+      where: {
+        email: email,
+        password: password
+      }
+    });
+    return {user, accessToken};
   }
 }
 
