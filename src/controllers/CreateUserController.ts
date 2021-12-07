@@ -21,7 +21,7 @@ class CreateUserController {
     
     const service = new CreateUserService();
     try {
-      const {user, accessToken} = await service.execute(name, role, email, password);
+      const { user, accessToken } = await service.execute(name, role, email, password);
       response.status(200).send({name: user.name, accessToken, refreshToken: user.refreshToken});
     } catch (error) {
        if (error instanceof prisma.PrismaClientKnownRequestError) {
