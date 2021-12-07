@@ -7,3 +7,6 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "refreshToken" TEXT NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");

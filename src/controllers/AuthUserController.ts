@@ -5,13 +5,15 @@ import validator from 'validator';
 class AuthUserController {
   async handle(request: Request, response: Response) {
     const {
-      body: {
+      body
+    } = request || {};
+    const {
         email,
         password
-      }
-    } = request || {};
-    if (!validator.isEmail(email)) return response.status(400).send({ message: "INVALID_EMAIL" });
-    if (!validator.isLength(password, {min: 8})) return response.status(400).send({ message: "INVALID_PASSWORD" });
+    } = body || {};
+    if (!email || !validator.isEmail(email)) return response.status(400).send({ message: "INVALID_EMAIL" });
+    if (!password || !validator.isLength(password, { min: 8 })) return response.status(400).send({ message: "INVALID_PASSWORD" });
+    
     const service = new AuthUserService();
     try {
       const {user, accessToken, refreshToken} = await service.execute(email);
