@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "ApiRest with NodeJS, TypeScript, ExpressJS, JWT, PrismaDB and SQLite",
   "main": "index.js",
   "scripts": {
