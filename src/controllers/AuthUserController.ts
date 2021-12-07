@@ -11,8 +11,8 @@ class AuthUserController {
         email,
         password
     } = body || {};
-    if (!email || !validator.isEmail(email)) return response.status(400).send({ message: "INVALID_EMAIL" });
-    if (!password || !validator.isLength(password, { min: 8 })) return response.status(400).send({ message: "INVALID_PASSWORD" });
+    if (!email || !validator.isEmail(email.toString())) return response.status(400).send({ message: "INVALID_EMAIL" });
+    if (!password || !validator.isLength(password.toString(), { min: 8 })) return response.status(400).send({ message: "INVALID_PASSWORD" });
     
     const service = new AuthUserService();
     try {

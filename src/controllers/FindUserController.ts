@@ -6,7 +6,17 @@ class FindUserController {
     const service = new FindUserService();
     try {
       const users = await service.execute();
-      response.status(200).send(users);
+      const filter = [];
+      users.forEach(item => {
+        const obj = {
+          id: item.id,
+          name: item.name,
+          role: item.role,
+          email: item.email
+        };
+        filter.push(obj);
+      });
+      response.status(200).send(filter);
     } catch (error) {
       response.status(400).send({message: error.message});
     }

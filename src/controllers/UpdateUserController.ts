@@ -15,8 +15,8 @@ class UpdateUserController {
     const {
       id,
     } = params || {};
-    if (!id || !validator.isUUID(id)) return response.status(400).send({ message: "INVALID_ID", id: id });
-    if (!name || !validator.isAlpha(name)) return response.status(400).send({ message: "INVALID_NAME" });
+    if (!id || !validator.isUUID(id.toString())) return response.status(400).send({ message: "INVALID_ID" });
+    if (!name || !validator.isAlpha(name.toString())) return response.status(400).send({ message: "INVALID_NAME" });
     
     const service = new UpdateUserService();
     try {
@@ -25,7 +25,7 @@ class UpdateUserController {
         response.status(404).send({message: 'USER_NOT_FOUND'});
         return;
       }
-      response.status(200).send({name: user.name});
+      response.sendStatus(200);
     } catch (error) {
        if (error instanceof prisma.PrismaClientKnownRequestError) {
         // The .code property can be accessed in a type-safe manner
@@ -33,7 +33,11 @@ class UpdateUserController {
           response.status(400).send({ message: 'DUPLICATED_EMAIL' });
           return;
         }
-      }
+        if (error.code === 'P2025') {
+          response.status(400).send({ message: 'USER_NOT_FOUND' });
+          return;
+        }
+       }
       response.status(400).send({ message: error.message });
     }
   }
