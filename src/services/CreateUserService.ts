@@ -23,7 +23,7 @@ class CreateUserService {
     const accessToken = jwt.sign({
       aud: "AUTH",
       id: user.id,
-      role: "ADMIN",
+      role: user.role,
       email: email
     }, process.env.JWT_SECRET, {
       expiresIn: "1h"

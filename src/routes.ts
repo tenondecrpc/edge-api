@@ -5,7 +5,7 @@ import { FindByIdUserController } from './controllers/FindByIdUserController';
 import { FindUserController } from './controllers/FindUserController';
 import { RemoveUserController } from './controllers/RemoveUserController';
 import { UpdateUserController } from './controllers/UpdateUserController';
-import { ensureAuth } from './middleware/ensureAuth';
+import { ensureAuth, requireRole, requireVersion } from './middleware/ensureAuth';
 
 const router = Router();
 
@@ -15,9 +15,10 @@ router.post('/create', new CreateUserController().handle);
 
 // Private routers
 router.use(ensureAuth);
-router.get('/find', new FindUserController().handle);
-router.get('/find/:id', new FindByIdUserController().handle);
-router.put('/update/:id', new UpdateUserController().handle);
-router.delete('/remove/:id', new RemoveUserController().handle);
+router.get('/find', requireRole(['ADMIN']), requireVersion(1), new FindUserController().handle);
+// router.get('/find', requireRole(['ADMIN', 'BUSINESSADMIN']), requireVersion(2), new FindUserController().handle);
+router.get('/find/:id', requireRole(['ADMIN']), requireVersion(1), new FindByIdUserController().handle);
+router.put('/update/:id', requireRole(['ADMIN']), requireVersion(1), new UpdateUserController().handle);
+router.delete('/remove/:id', requireRole(['ADMIN']), requireVersion(1), new RemoveUserController().handle);
 
 export { router };
