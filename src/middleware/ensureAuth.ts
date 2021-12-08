@@ -28,7 +28,6 @@ export function ensureAuth(request: Request, response: Response, next: NextFunct
 }
 
 export function requireRole(roles: string[]) {
-  console.log('roles', roles);
   return function (request: Request, response: Response, next: NextFunction) {
     if (roles.some(requiredRole => (request.role === requiredRole))) {
 			next();
