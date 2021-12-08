@@ -4,7 +4,12 @@
   "description": "ApiRest with NodeJS, TypeScript, ExpressJS, JWT, PrismaDB and SQLite",
   "main": "index.js",
   "scripts": {
-    "migrate": "yarn prisma migrate dev",
+    "prisma-migrate": "yarn prisma migrate dev",
+    "prisma-reset": "yarn prisma migrate reset --skip-seed",
+    "docker-compose": "docker-compose -f docker-compose.test.yml build --no-cache",
+    "docker-images": "docker images",
+    "docker-migrate": "docker-compose -f docker-compose.test.yml run --rm server yarn prisma migrate dev --name add-user-model",
+    "docker-remove": "docker image rm edge-api_server",
     "test": "yarn test",
     "start": "ts-node-dev --exit-child src/server.ts"
   },
@@ -27,7 +32,12 @@
   "homepage": "https://github.com/tenondecrpc/edge-api#readme",
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.3",
+    "jest": "^27.4.3",
+    "node-fetch": "^3.1.0",
     "prisma": "3.6.0",
+    "ts-jest": "^27.1.1",
+    "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.2"
   },
