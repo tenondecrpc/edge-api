@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
+import validator from 'validator';
 import { FindByFilterUserService } from "../services/FindByFilterUserService";
 
 class FindByFilterUserController {
   async handle(request: Request, response: Response) {
     const { query } = request || {};
-    const { page, role, sortBy, order} = query || {};
+    const { page, role, sortBy, order } = query || {};
+    if (page && !validator.isNumeric(page.toString())) return response.status(400).send({ message: "INVALID_PAGE" });
+    if (role && !validator.isAlpha(role.toString())) return response.status(400).send({ message: "INVALID_ROLE" });
+    if (sortBy && !validator.isAlpha(sortBy.toString())) return response.status(400).send({ message: "INVALID_SORTBY" });
+    if (page && !validator.isAlpha(order.toString())) return response.status(400).send({ message: "INVALID_ORDER" });
 
     const service = new FindByFilterUserService();
     try {

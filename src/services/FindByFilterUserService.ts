@@ -10,7 +10,7 @@ interface IFilter {
 class FindByFilterUserService {
   async execute(page, role, sortBy, order) {
     const filter: IFilter = {};
-    const take = 1;
+    const take = 10;
     filter.take = take;
     const skip = page && page > 1 ? (page - 1) * take : null;
     if (skip) {
