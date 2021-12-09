@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import validator from 'validator';
-import { prisma } from "../prisma";
+import { prismaClient, prisma } from "../prisma";
 import { CreateUserService } from "../services/CreateUserService";
 
 class CreateUserController {
@@ -21,7 +21,13 @@ class CreateUserController {
     
     const service = new CreateUserService();
     try {
-      const { user, accessToken } = await service.execute(name, role, email, password);
+      const userObj = {
+        name, 
+        role,
+        email,
+        password
+      };
+      const { user, accessToken } = await service.execute(prismaClient, userObj);
       response.status(200).send({name: user.name, accessToken, refreshToken: user.refreshToken});
     } catch (error) {
        if (error instanceof prisma.PrismaClientKnownRequestError) {
