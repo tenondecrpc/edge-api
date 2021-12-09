@@ -35,13 +35,21 @@ describe("FindByFilterService() - unit", () => {
   });
 
   it("fails if tries to find when role does not exist", async () => {
-    const filter = {
-      page: 1,
-      role: 'UNKNOWN',
-      sortBy: 'name',
-      order: 'asc'
+    const user = {
+      name: "Cristian", 
+      role: "ADMIN", 
+      email: `${uuidv4()}@gmail.com`, 
+      password: "hola1234"
     };
+
+    const createService = new CreateUserService();
+    const {user: newUser} = await createService.execute(prismaClient, user);
+    expect(newUser.email).toBe(user.email);
+
     const authService = new FindByFilterUserService();
+    const filter = {
+      role: 'UNKNOWN'
+    };
     expect(await authService.execute(prismaClient, filter)).toEqual([]);
   });
 });
