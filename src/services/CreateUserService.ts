@@ -1,18 +1,14 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 import randToken from 'rand-token';
-import { prismaClient } from "../prisma";
 
 class CreateUserService {
-  async execute(name: string, role: string, email: string, password: string) {
+  async execute(prismaClient, data) {
     // Create new refresh token
     const refreshToken = randToken.uid(256);
     const user = await prismaClient.user.create({
       data: {
-        name,
-        role,
-        email,
-        password,
+        ...data,
         refreshToken
       }
     });
@@ -24,7 +20,7 @@ class CreateUserService {
       aud: "AUTH",
       id: user.id,
       role: user.role,
-      email: email
+      email: user.email
     }, process.env.JWT_SECRET, {
       expiresIn: "1h"
     });
