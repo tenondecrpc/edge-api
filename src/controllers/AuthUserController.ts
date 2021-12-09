@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { AuthUserService } from '../services/AuthUserService';
 import validator from 'validator';
+import { AuthUserService } from '../services/AuthUserService';
+import { prismaClient } from "../prisma";
 
 class AuthUserController {
   async handle(request: Request, response: Response) {
@@ -16,7 +17,7 @@ class AuthUserController {
     
     const service = new AuthUserService();
     try {
-      const {user, accessToken, refreshToken} = await service.execute(email);
+      const {user, accessToken, refreshToken} = await service.execute(prismaClient, email);
       if (!user) {
         response.status(404).send({ message: 'USER_NOT_FOUND' });
         return;

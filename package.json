@@ -7,11 +7,11 @@
     "docker-compose": "docker-compose -f docker-compose.test.yml build --no-cache",
     "docker-images": "docker images",
     "docker-migrate": "docker-compose -f docker-compose.test.yml run --rm server yarn prisma migrate dev --name add-user-model",
-    "docker-test": "docker-compose -f docker-compose.test.yml run --rm server yarn jest -i",
+    "docker-test": "docker-compose -f docker-compose.test.yml run --rm server yarn jest -i --verbose",
     "docker-remove": "docker image rm edge-api_server",
     "prisma-migrate": "yarn prisma migrate dev",
     "prisma-reset": "yarn prisma migrate reset --skip-seed",
-    "test": "yarn jest -i --watch",
+    "test": "yarn jest -i --watch --verbose",
     "start": "ts-node-dev --exit-child src/server.ts"
   },
   "repository": {

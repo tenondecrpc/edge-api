@@ -1,9 +1,8 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 import randToken from 'rand-token';
-import { prismaClient } from "../prisma";
 class AuthUserService {
-  async execute(email: string) {
+  async execute(prismaClient, email) {
     const user = await prismaClient.user.findFirst({
       where: {
         email: email

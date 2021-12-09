@@ -23,14 +23,13 @@ describe("CreateUserService() - unit", () => {
     const service = new CreateUserService();
     await service.execute(prismaClient, user);
 
-    const savedUser = await prismaClient.user.findMany({
+    const savedUser = await prismaClient.user.findFirst({
       where: {
         email: user.email
       },
-      take: 1,
     });
 
-    expect(savedUser[0].email).toBe(user.email);
+    expect(savedUser.email).toBe(user.email);
   });
 
   it("fails if tries to create records with the same user twice", async () => {
