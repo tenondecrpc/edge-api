@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import validator from 'validator';
 import { FindByIdUserService } from "../services/FindByIdUserService";
+import { prismaClient } from "../prisma";
 
 class FindByIdUserController {
   async handle(request: Request, response: Response) {
@@ -10,7 +11,7 @@ class FindByIdUserController {
     
     const service = new FindByIdUserService();
     try {
-      const user = await service.execute(id);
+      const user = await service.execute(prismaClient, id);
       if (!user) {
         response.status(404).send({message: 'USER_NOT_FOUND'});
         return;

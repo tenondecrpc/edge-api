@@ -46,10 +46,10 @@ describe("FindByFilterService() - unit", () => {
     const {user: newUser} = await createService.execute(prismaClient, user);
     expect(newUser.email).toBe(user.email);
 
-    const authService = new FindByFilterUserService();
+    const findService = new FindByFilterUserService();
     const filter = {
       role: 'UNKNOWN'
     };
-    expect(await authService.execute(prismaClient, filter)).toEqual([]);
+    expect(await findService.execute(prismaClient, filter)).toEqual([]);
   });
 });

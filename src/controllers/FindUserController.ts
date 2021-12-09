@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { FindUserService } from "../services/FindUserService";
+import { prismaClient } from "../prisma";
 
 class FindUserController {
   async handle(request: Request, response: Response) {
     const service = new FindUserService();
     try {
-      const users = await service.execute();
+      const users = await service.execute(prismaClient);
       const filter = [];
       users.forEach(item => {
         const obj = {

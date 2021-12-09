@@ -39,7 +39,7 @@ describe("FindByIdService() - unit", () => {
 
     const createService = new CreateUserService();
     const { user: newUser } = await createService.execute(prismaClient, user);
-    const authService = new FindByIdUserService();
-    expect(await authService.execute(prismaClient, uuidv4())).toEqual(null);
+    const findService = new FindByIdUserService();
+    expect(await findService.execute(prismaClient, uuidv4())).toEqual(null);
   });
 });
