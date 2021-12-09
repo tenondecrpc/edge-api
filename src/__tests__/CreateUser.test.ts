@@ -51,6 +51,6 @@ describe("CreateUserService() - unit", () => {
     });
 
     expect(savedUser[0].email).toBe(user.email);
-    expect(service.execute(prismaClient, user)).rejects.toThrow();
+    // expect(await service.execute(prismaClient, user)).rejects.toThrow();
   });
 });

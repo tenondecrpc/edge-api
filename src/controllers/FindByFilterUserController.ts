@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import validator from 'validator';
 import { FindByFilterUserService } from "../services/FindByFilterUserService";
+import { prismaClient } from "../prisma";
 
 class FindByFilterUserController {
   async handle(request: Request, response: Response) {
@@ -13,7 +14,13 @@ class FindByFilterUserController {
 
     const service = new FindByFilterUserService();
     try {
-      const users = await service.execute(page, role, sortBy, order);
+      const filterObj = {
+        page,
+        role,
+        sortBy,
+        order
+      };
+      const users = await service.execute(prismaClient, filterObj);
       const filter = [];
       users.forEach(item => {
         const obj = {

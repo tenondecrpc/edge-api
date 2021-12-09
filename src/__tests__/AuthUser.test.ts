@@ -28,12 +28,12 @@ describe("AuthUserService() - unit", () => {
     expect(authService.execute(prismaClient, user.email)).toBeTruthy();
   });
 
-  it("fails if tries to auth when email is null", async () => {
+  it("fails if tries to auth when email does not exist", async () => {
     const user = {
-      email: null
+      email: 'unknown@test.com'
     };
 
     const authService = new AuthUserService();
-    expect(authService.execute(prismaClient, user.email)).rejects.toThrow();
+    expect(await authService.execute(prismaClient, user.email)).toEqual({user: null});
   });
 });

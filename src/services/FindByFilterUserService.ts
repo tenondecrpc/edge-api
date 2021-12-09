@@ -1,5 +1,3 @@
-import { prismaClient } from '../prisma';
-
 interface IFilter {
   skip?: number,
   take?: number,
@@ -8,7 +6,8 @@ interface IFilter {
 }
 
 class FindByFilterUserService {
-  async execute(page, role, sortBy, order) {
+  async execute(prismaClient, params) {
+    const { page, role, sortBy, order } = params || {};
     const filter: IFilter = {};
     const take = 10;
     filter.take = take;
