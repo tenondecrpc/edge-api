@@ -7,7 +7,7 @@ services:
       target: base
     environment:
       SERVER_DATABASE_NAME: test
-      PRISMA_DATABASE_URL: mysql://root:root@database:3306/test?schema=public
+      PRISMA_DATABASE_URL: file:./test.db
     ports:
       - 9999:80
     volumes:
@@ -15,23 +15,23 @@ services:
       - ./package.json:/var/www/package.json
     networks:
       - test_vm
-    depends_on:
-      - database
+    # depends_on:
+    #   - database
 
-  database:
-    image: mysql:5.7
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PORT=3306
-    volumes:
-      - database:/var/lib/mysql
-    expose:
-      - 3307
-    ports:
-      - 3307:3306
-    networks:
-      - test_vm
+  # database:
+  #   image: mysql:5.7
+  #   restart: always
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=root
+  #     - MYSQL_PORT=3306
+  #   volumes:
+  #     - database:/var/lib/mysql
+  #   expose:
+  #     - 3307
+  #   ports:
+  #     - 3307:3306
+  #   networks:
+  #     - test_vm
 volumes:
   database:
 networks:
