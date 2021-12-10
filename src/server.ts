@@ -1,10 +1,15 @@
 import "dotenv/config";
 import http from "http";
 import express from 'express';
+import helmet from 'helmet';
 
 import { router } from "./routes";
 
 const app = express();
+
+// https://expressjs.com/en/advanced/best-practice-security.html
+app.use(helmet());
+
 app.use(express.json());
 app.use(router);
 
