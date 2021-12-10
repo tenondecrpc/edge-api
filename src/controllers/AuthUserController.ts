@@ -26,7 +26,7 @@ class AuthUserController {
         response.status(400).send({ message: 'INVALID_PASSWORD' });
         return;
       }
-      response.status(200).send({id: user.ide, name: user.name, accessToken, refreshToken});
+      response.status(200).send({id: user.id, name: user.name, accessToken, refreshToken});
     } catch (error) {
       response.status(400).send({message: error.message});
     }
