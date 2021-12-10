@@ -98,3 +98,4 @@ yarn docker-test
 ## Documentation
 
 The documentation is available in the `resources` folder, containing the files for postman and swagger
+Example: [Swagger Doc](https://app.swaggerhub.com/apis-docs/tenondecrpc/edge-api/1.0.0)
