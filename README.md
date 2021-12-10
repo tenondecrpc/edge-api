@@ -4,7 +4,7 @@ This example shows how to implement integration tests using [Express](https://ex
 
 ## Getting started
 
-As a `prerequisite` I need to have [NodeJS](https://nodejs.org) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install) installed.
+As a `prerequisite` you need to have [NodeJS](https://nodejs.org) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install) installed.
 
 ### 1. Download example and install dependencies
 
