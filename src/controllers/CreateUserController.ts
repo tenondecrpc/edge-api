@@ -27,8 +27,8 @@ class CreateUserController {
         email,
         password
       };
-      const { user, accessToken } = await service.execute(prismaClient, userObj);
-      response.status(200).send({name: user.name, accessToken, refreshToken: user.refreshToken});
+      const { user } = await service.execute(prismaClient, userObj);
+      response.status(200).send({name: user.name});
     } catch (error) {
        if (error instanceof prisma.PrismaClientKnownRequestError) {
         // The .code property can be accessed in a type-safe manner

@@ -4,6 +4,7 @@ import express from 'express';
 import helmet from 'helmet';
 
 import { router } from "./routes";
+import { initData } from "./util";
 
 const app = express();
 
@@ -14,7 +15,8 @@ app.use(express.json());
 app.use(router);
 
 const server = http.createServer(app);
-server.listen(process.env.PORT, () =>
-  console.log('Server is running on PORT ' + process.env.PORT)
-);
+server.listen(process.env.PORT, () => {
+  initData();
+  console.log('Server is running on PORT ' + process.env.PORT);
+});
 
