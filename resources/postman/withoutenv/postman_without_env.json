@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "01f8717a-fa44-4e50-ad5d-f1cebcd1f2ab",
+		"name": "edge-api_without_env",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"tenondecrpc@gmail.com\",\n    \"password\": \"hola1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBVVRIIiwiaWQiOiI5MzE1MTFlOS1lM2E5LTRlZTQtOGYyOC1jNGFlZTBjNTVjOTYiLCJyb2xlIjoiQURNSU4iLCJlbWFpbCI6InRlbm9uZGVjcnBjQGdtYWlsLmNvbSIsImlhdCI6MTYzOTEwNTY3MiwiZXhwIjoxNjM5MTA5MjcyfQ.7f3dSLMIer7iwzHlMpZy-9AoWbvVNQDZAQENi6D4-AA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cristian\",\n    \"role\": \"ADMIN\",\n    \"email\": \"tenondecrpc@gmail.com\",\n    \"password\": \"hola1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBVVRIIiwiaWQiOiI3NDEwZDI3Yy0wODNiLTRjMDgtYTMzNy05YzJkODJhMWRhOTAiLCJyb2xlIjoiQURNSU4iLCJlbWFpbCI6InRlbm9uZGVjcnBjQGdtYWlsLmNvbSIsImlhdCI6MTYzOTEwNzM4OCwiZXhwIjoxNjM5MTEwOTg4fQ.zGU8ivSlTcPHJExuZ1ky2UY9utW0Zt2eGIMz4IujA3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ramon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/update/931511e9-e3a9-4ee4-8f28-c4aee0c55c96",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"update",
+								"931511e9-e3a9-4ee4-8f28-c4aee0c55c96"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBVVRIIiwiaWQiOiJmNjBlYTY5OS1hMWI5LTQwYmUtYjM4Zi1jZDdlM2RhYjQ1ODAiLCJyb2xlIjoiQURNSU4iLCJlbWFpbCI6InRlbm9uZGVjcnBjQGdtYWlsLmNvbSIsImlhdCI6MTYzODg5MjIyNCwiZXhwIjoxNjM4ODk1ODI0fQ.uVlj1RpejfZwSI6y2mLuiPZ11iJSamERrpR_MTjwark",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/remove/f60ea699-a1b9-40be-b38f-cd7e3dab4580",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"remove",
+								"f60ea699-a1b9-40be-b38f-cd7e3dab4580"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBVVRIIiwiaWQiOiJmZTQ1YTQ4YS01ZDFhLTQ2OTMtYjA5Ni03YWMwNDYyY2FjNDYiLCJyb2xlIjoiQURNSU4iLCJlbWFpbCI6InRlbm9uZGVjcnBjQGdtYWlsLmNvbSIsImlhdCI6MTYzODg4NjM1OSwiZXhwIjoxNjM4ODg5OTU5fQ.VtczJ5SY_Z_fSRKGWY71GwDzEYlWAaDoEZSfQo-bX40",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/find/f60ea699-a1b9-40be-b38f-cd7e3dab4580",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"find",
+								"f60ea699-a1b9-40be-b38f-cd7e3dab4580"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBVVRIIiwiaWQiOiI5MzE1MTFlOS1lM2E5LTRlZTQtOGYyOC1jNGFlZTBjNTVjOTYiLCJyb2xlIjoiQURNSU4iLCJlbWFpbCI6InRlbm9uZGVjcnBjQGdtYWlsLmNvbSIsImlhdCI6MTYzOTA5OTY3NCwiZXhwIjoxNjM5MTAzMjc0fQ.1cTQp_SRlJq13XN1Ue737OfhgPo8psIzt4Z1eO3t0hE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "version",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByFilter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBVVRIIiwiaWQiOiJmMmI5OTU2ZC00ODMwLTQ4ZjMtODcwNS0xNmIyZDMyNjlhZmEiLCJyb2xlIjoiQURNSU4iLCJlbWFpbCI6InRlbm9uZGVjcnBjQGdtYWlsLmNvbSIsImlhdCI6MTYzOTAxNDk2NCwiZXhwIjoxNjM5MDE4NTY0fQ.cUxkRVPHwJh_t91As9BZBCgVw88J70DqPTR4CI9qYhM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "version",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/find?page=1&role=ADMIN&sortBy=name&order=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"find"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN"
+								},
+								{
+									"key": "sortBy",
+									"value": "name"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
