@@ -12,7 +12,7 @@ afterAll(async () => {
   await prismaClient.$disconnect();
 });
 
-describe("RemoveService() - unit", () => {
+describe("RemoveUserService() - unit", () => {
   it("should remove record of user correctly", async () => {
     const user = {
       name: "Cristian", 

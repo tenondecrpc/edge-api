@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import validator from 'validator';
-import { prisma } from "../prisma";
+import {prismaClient, prisma } from "../prisma";
 import { UpdateUserService } from "../services/UpdateUserService";
 
 class UpdateUserController {
@@ -20,7 +20,7 @@ class UpdateUserController {
     
     const service = new UpdateUserService();
     try {
-      const user = await service.execute(id, name);
+      const user = await service.execute(prismaClient, {id, name});
       if (!user) {
         response.status(404).send({message: 'USER_NOT_FOUND'});
         return;

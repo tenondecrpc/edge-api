@@ -12,7 +12,7 @@ afterAll(async () => {
   await prismaClient.$disconnect();
 });
 
-describe("FindByIdService() - unit", () => {
+describe("FindByIdUserService() - unit", () => {
   it("should find record of user correctly", async () => {
     const user = {
       name: "Cristian", 

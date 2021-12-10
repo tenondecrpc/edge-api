@@ -31,7 +31,7 @@ describe("CreateUserService() - unit", () => {
     expect(newUser.email).toBe(user.email);
   });
 
-  it("fails if tries to create records with the same user twice", async () => {
+  it("fails if tries to create a record with the same user twice", async () => {
     const user = {
       name: "Cristian", 
       role: "ADMIN", 

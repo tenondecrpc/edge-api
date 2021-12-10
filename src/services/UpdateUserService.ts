@@ -1,13 +1,11 @@
-import { prismaClient } from "../prisma";
-
 class UpdateUserService {
-  async execute(id: string, name: string) {
+  async execute(prismaClient, data) {
     const user = await prismaClient.user.update({
     where: {
-      id: id,
+      id: data.id,
     },
     data: {
-      name: name,
+      name: data.name,
     },
     });
     return user;
