@@ -13,7 +13,7 @@ afterAll(async () => {
 });
 
 describe("FindService() - unit", () => {
-  it("find record of user correctly", async () => {
+  it("should find record of user correctly", async () => {
     const user = {
       name: "Cristian", 
       role: "ADMIN", 

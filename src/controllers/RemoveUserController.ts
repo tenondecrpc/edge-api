@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import validator from 'validator';
-import { prisma } from "../prisma";
+import { prisma, prismaClient } from "../prisma";
 import { RemoveUserService } from "../services/RemoveUserService";
 
 class RemoveUserController {
@@ -11,7 +11,7 @@ class RemoveUserController {
     
     const service = new RemoveUserService();
     try {
-      await service.execute(id);
+      await service.execute(prismaClient, id);
       response.sendStatus(200);
     } catch (error) {
       if (error instanceof prisma.PrismaClientKnownRequestError) {

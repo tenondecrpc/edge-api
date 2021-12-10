@@ -12,7 +12,7 @@ afterAll(async () => {
 });
 
 describe("CreateUserService() - unit", () => {
-  it("creates new user correctly", async () => {
+  it("should create new user correctly", async () => {
     const user = {
       name: "Cristian", 
       role: "ADMIN", 
@@ -23,13 +23,12 @@ describe("CreateUserService() - unit", () => {
     const service = new CreateUserService();
     await service.execute(prismaClient, user);
 
-    const savedUser = await prismaClient.user.findFirst({
+    const newUser = await prismaClient.user.findFirst({
       where: {
         email: user.email
       },
     });
-
-    expect(savedUser.email).toBe(user.email);
+    expect(newUser.email).toBe(user.email);
   });
 
   it("fails if tries to create records with the same user twice", async () => {
@@ -41,16 +40,12 @@ describe("CreateUserService() - unit", () => {
     };
 
     const service = new CreateUserService();
-    await service.execute(prismaClient, user);
 
-    const savedUser = await prismaClient.user.findMany({
-      where: {
-        email: user.email
-      },
-      take: 1,
-    });
+    const { user: newUser } = await service.execute(prismaClient, user);
+    expect(newUser.email).toBe(user.email);
 
-    expect(savedUser[0].email).toBe(user.email);
-    // expect(await service.execute(prismaClient, user)).rejects.toThrow();
+    await expect(() => service.execute(prismaClient, user)).rejects.toThrow(
+      "Unique constraint failed on the fields:"
+    );
   });
 });

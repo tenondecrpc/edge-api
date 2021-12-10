@@ -13,7 +13,7 @@ afterAll(async () => {
 });
 
 describe("AuthUserService() - unit", () => {
-  it("auth existing  user correctly", async () => {
+  it("should auth existing user correctly", async () => {
     const user = {
       name: "Cristian", 
       role: "ADMIN", 

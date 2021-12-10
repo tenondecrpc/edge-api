@@ -1,7 +1,5 @@
-import { prismaClient } from '../prisma';
-
 class RemoveUserService {
-  async execute(id: string) {
+  async execute(prismaClient, id) {
     const user = await prismaClient.user.delete({
       where: {
         id: id

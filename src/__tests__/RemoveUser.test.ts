@@ -1,4 +1,4 @@
-import { FindByIdUserService } from "../services/FindByIdUserService";
+import { RemoveUserService } from "../services/RemoveUserService";
 import { CreateUserService } from "../services/CreateUserService";
 import { v4 as uuidv4 } from "uuid";
 import { prismaClient } from "../prisma";
@@ -12,8 +12,8 @@ afterAll(async () => {
   await prismaClient.$disconnect();
 });
 
-describe("FindByIdService() - unit", () => {
-  it("should find record of user correctly", async () => {
+describe("RemoveService() - unit", () => {
+  it("should remove record of user correctly", async () => {
     const user = {
       name: "Cristian", 
       role: "ADMIN", 
@@ -23,13 +23,14 @@ describe("FindByIdService() - unit", () => {
 
     const createService = new CreateUserService();
     const { user: newUser } = await createService.execute(prismaClient, user);
+    expect(newUser.email).toBe(user.email);
 
-    const authService = new FindByIdUserService();
+    const authService = new RemoveUserService();
     const id = newUser.id;
     expect(authService.execute(prismaClient, id)).toBeTruthy();
   });
 
-  it("fails if tries to find when id does not exist", async () => {
+  it("fails if tries to remove when id does not exist", async () => {
     const user = {
       name: "Cristian", 
       role: "ADMIN", 
@@ -39,7 +40,12 @@ describe("FindByIdService() - unit", () => {
 
     const createService = new CreateUserService();
     const { user: newUser } = await createService.execute(prismaClient, user);
-    const findService = new FindByIdUserService();
-    expect(await findService.execute(prismaClient, uuidv4())).toEqual(null);
+    expect(newUser.email).toBe(user.email);
+
+
+    const removeService = new RemoveUserService();
+    await expect(() => removeService.execute(prismaClient, uuidv4())).rejects.toThrow(
+      "Record to delete does not exist"
+    );
   });
 });
