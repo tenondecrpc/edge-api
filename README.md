@@ -69,7 +69,7 @@ The tests can be run using:
 yarn test
 ```
 
-## Run in docker
+## Run in docker (Optional)
 
 For this kind of test you need to have installed [Docker](https://www.docker.com)
 
