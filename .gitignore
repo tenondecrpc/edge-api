@@ -129,3 +129,4 @@ dist
 # others
 migrations
 test.db
+test.db.-journal

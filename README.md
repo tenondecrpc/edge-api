@@ -44,6 +44,7 @@ Run the following command to create your SQLite database file. This also creates
 
 ```
 yarn prisma-migrate
+create_user
 ```
 
 ### 2. Start the REST API server
@@ -54,7 +55,7 @@ Rename the `.env.example` to `.env` and execute this command to start the server
 yarn start
 ```
 
-The server is now running on `http://localhost:4000`. You can send the API requests implemented in `server.js`, e.g. [`http://localhost:4000/find`](http://localhost:4000/find).
+The server is now running on `http://localhost:4000`. You can send the API requests implemented in `server.js`.
 
 ### 3. Testing the endpoints
 
