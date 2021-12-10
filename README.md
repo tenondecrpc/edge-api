@@ -4,6 +4,8 @@ This example shows how to implement integration tests using [Express](https://ex
 
 ## Getting started
 
+As a `prerequisite` I need to have [NodeJS] (https://nodejs.org) and [Yarn] (https://classic.yarnpkg.com/lang/en/docs/install) installed.
+
 ### 1. Download example and install dependencies
 
 Download this example:
@@ -68,6 +70,8 @@ yarn test
 ```
 
 ## Run in docker
+
+For this kind of test you need to have installed [Docker](https://www.docker.com)
 
 ### 1. Create docker image
 
